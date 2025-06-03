@@ -1,12 +1,12 @@
 package br.edu.cba.ifmt.Model;
 
-public class Municipality {
+public class City {
 	private int id;
 	private String nome;
 	
-	public Municipality() {}
+	public City() {}
 	
-	public Municipality(int id, String nome) {
+	public City(int id, String nome) {
 		this.id = id;
 		this.nome = nome;
 	}

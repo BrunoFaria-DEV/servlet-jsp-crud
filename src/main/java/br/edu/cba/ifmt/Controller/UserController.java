@@ -10,24 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.cba.ifmt.Model.User;
+import br.edu.cba.ifmt.DAO.UserDAO;
 
 public class UserController extends HttpServlet{
-	//private IUserDAO _userDAO;
-	
-	//public UserController() {
-		//_userDAO = new UserDAO();
-	//}
+	private UserDAO _userDAO;
 	
 	@Override
 	public void init() throws ServletException {
-		//_userDAO = new UserDAO();
+		_userDAO = new UserDAO();
 	}
 	
 	protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> users = new ArrayList<User>();
+		List<User> users = _userDAO.getAll();
 		
 		request.setAttribute("users", users);
-		
 		request.getRequestDispatcher("resources/views/usuarios/index.jsp").forward(request, response);
 	}
 	
