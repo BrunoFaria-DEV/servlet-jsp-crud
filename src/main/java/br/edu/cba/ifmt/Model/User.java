@@ -5,21 +5,23 @@ public class User {
 	private String nome;
 	private String email;
 	private String CPF;
-	private int municipio_id;
+	private City city;
 	
 	public User() {}
 	
-	public User(String nome, String email, int municipio_id) {
+	public User(String nome, String email, String CPF, City city) {
 		this.nome = nome;
 		this.email = email;
-		this.municipio_id = municipio_id;
+		this.CPF = CPF;
+		this.city = city;
 	}
 	
-	public User(int id, String nome, String email, int municipio_id) {
+	public User(int id, String nome, String email, String CPF, City city) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.municipio_id = municipio_id;
+		this.CPF = CPF;
+		this.city = city;
 	}
 
 	public int getId() { return id;	}
@@ -38,7 +40,8 @@ public class User {
 
 	public void setCPF(String cPF) { CPF = cPF;	}
 
-	public int getMunicipio_id() { return municipio_id; }
+	public City getCity() { return city; }
 
-	public void setMunicipio_id(int municipio_id) { this.municipio_id = municipio_id; }
+	public void setCity(City city) { this.city = city; }
+
 }

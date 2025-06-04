@@ -4,21 +4,21 @@ CREATE DATABASE "servlet-jsp-crud";
 -- Depois de executar o comando acima, conecte-se ao banco recém-criado antes de rodar os próximos comandos.
 
 -- Criação das tabelas
-CREATE TABLE public.municipios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(120) NOT NULL
+CREATE TABLE "municipios"(
+    "id" SERIAL PRIMARY KEY,
+    "nome" VARCHAR(120) NOT NULL
 );
 
-CREATE TABLE public.usuarios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(120) NOT NULL,
-    email VARCHAR(220) NOT NULL,
-    CPF VARCHAR(14),
-    municipio_id INTEGER,
-    FOREIGN KEY (municipio_id) REFERENCES public.municipios(id)
+CREATE TABLE "usuarios" (
+    "id" SERIAL PRIMARY KEY,
+    "nome" VARCHAR(120) NOT NULL,
+    "email" VARCHAR(220) NOT NULL,
+    "CPF" VARCHAR(14),
+    "municipio_id" INTEGER,
+    FOREIGN KEY ("municipio_id") REFERENCES "municipios"("id")
 );
 
-INSERT INTO municipios (nome) VALUES 
+INSERT INTO "municipios" ("nome") VALUES 
 ('São Paulo'),
 ('Rio de Janeiro'),
 ('Belo Horizonte'),
@@ -74,13 +74,22 @@ INSERT INTO municipios (nome) VALUES
 -- Criação do usuário
 CREATE USER "servlet-jsp-crud" WITH PASSWORD 'servlet-jsp-crud';
 
--- Permissões para o banco
+-- Permissões de conexão ao banco
 GRANT CONNECT ON DATABASE "servlet-jsp-crud" TO "servlet-jsp-crud";
 
--- Permissões no schema público (onde estão as tabelas)
+-- Permissões no schema público
 GRANT USAGE ON SCHEMA public TO "servlet-jsp-crud";
+
+-- Permissões em todas as tabelas existentes
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO "servlet-jsp-crud";
 
--- Permissões para futuras tabelas
+-- Permissões em todas as sequências existentes (necessárias para colunas SERIAL/IDENTITY)
+GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public TO "servlet-jsp-crud";
+
+-- Permissões para tabelas futuras no schema public
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO "servlet-jsp-crud";
+
+-- Permissões para sequências futuras no schema public
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO "servlet-jsp-crud";

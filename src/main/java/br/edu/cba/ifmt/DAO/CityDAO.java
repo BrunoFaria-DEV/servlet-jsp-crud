@@ -35,7 +35,7 @@ public class CityDAO {
 			result.close();
 			_contextConnection.connection().close();
 		} catch (Exception e) {
-            System.err.println("Erro em UserDAO.getAll(): " + e.getMessage());
+            System.err.println("Erro em CityDAO.getAll(): " + e.getMessage());
 			e.printStackTrace();
 		}
 		return cities;
@@ -46,16 +46,22 @@ public class CityDAO {
 
 		try {
 			PreparedStatement statement = _contextConnection.connection().prepareStatement(SELECT_BY_ID);
+			statement.setInt(1, id);
+			
 			ResultSet result = statement.executeQuery();
 			
-			city.setId(result.getInt("id"));
-			city.setNome(result.getString("nome"));
+			if(result.next()) {			
+				city.setId(result.getInt("id"));
+				city.setNome(result.getString("nome"));
+			} else {
+				city = null; 
+			}
 
 			statement.close();
 			result.close();
 			_contextConnection.connection().close();
 		} catch (Exception e) {
-            System.err.println("Erro em UserDAO.getAll(): " + e.getMessage());
+            System.err.println("Erro em CityDAO.getById(): " + e.getMessage());
 			e.printStackTrace();
 		}
 		return city;

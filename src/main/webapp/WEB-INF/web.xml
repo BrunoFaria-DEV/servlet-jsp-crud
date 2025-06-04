@@ -17,4 +17,24 @@
 		<servlet-name>UserController</servlet-name>
 		<url-pattern>/usuarios</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/usuarios/novo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/usuarios/store</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/usuarios/editar/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/usuarios/update/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/usuarios/excluir/*</url-pattern>
+	</servlet-mapping>
 </web-app>
